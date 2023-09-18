@@ -4,5 +4,9 @@
   "description": "wordcamp react senior assessment",
   "main": "src/index.tsx",
   "author": "tom hikari <tomprescott1565@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
