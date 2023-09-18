@@ -7,11 +7,23 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --env env=development",
-    "build": "webpack --config webpack.config.js --env env=production"
+    "build": "webpack --config webpack.config.js --env env=production",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.9",
+    "@reduxjs/toolkit": "^1.9.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "redux-saga": "^1.2.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.15",
