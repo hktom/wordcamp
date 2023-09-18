@@ -1,0 +1,8 @@
+{
+  "name": "wordcamp",
+  "version": "1.0.0",
+  "description": "wordcamp react senior assessment",
+  "main": "src/index.tsx",
+  "author": "tom hikari <tomprescott1565@gmail.com>",
+  "license": "MIT"
+}
