@@ -23,8 +23,8 @@ export const handleQueryParams = (
   return query;
 };
 
-export const formatApiData = (data: any[]): IWordCamp[] => {
-  return data.map((event: any) => {
+export const formatApiData = (res: any[]): IWordCamp[] => {
+  const data: IWordCamp[] = res.map((event: any) => {
     return {
       id: event.id,
       status: event.status,
@@ -47,6 +47,7 @@ export const formatApiData = (data: any[]): IWordCamp[] => {
       session_start_time: event.session_start_time,
     };
   });
+  return data;
 };
 
 export const filterEventByData = (

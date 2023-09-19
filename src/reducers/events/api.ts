@@ -10,10 +10,10 @@ import {
 
 export const fetchEventRequest = async (per_page?: number, page?: number) => {
   try {
-    const res: any[] = await axios.get(
+    const res = await axios.get(
       API_URL + "?" + handleQueryParams(undefined, per_page, page),
     );
-    const data = formatApiData(res);
+    const data = formatApiData(res.data);
     return { data };
   } catch (error) {
     return { error };
@@ -26,10 +26,10 @@ export const fetchEventRequestByStatus = async (
   page?: number,
 ) => {
   try {
-    const res: any[] = await axios.get(
+    const res = await axios.get(
       `${API_URL}?${handleQueryParams(status, per_page, page)}`,
     );
-    const data = formatApiData(res);
+    const data = formatApiData(res.data);
     return { data };
   } catch (error) {
     return { error };
@@ -44,10 +44,10 @@ export const fetchEventRequestByDate = async (
   page?: number,
 ) => {
   try {
-    const res: any[] = await axios.get(
+    const res = await axios.get(
       `${API_URL}?${handleQueryParams(status, per_page, page)}`,
     );
-    const data = filterEventByData(start_date, end_date, formatApiData(res));
+    const data = filterEventByData(start_date, end_date, formatApiData(res.data));
     return { data };
   } catch (error) {
     return { error };
