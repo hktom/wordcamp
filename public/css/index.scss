@@ -11,6 +11,18 @@ body{
     display: none !important;
 }
 
+.box-closed{
+    background-color: #ff0000 !important;
+    width: 20px;
+    height: 20px;
+}
+
+.box-opened{
+    background-color: #3788D8 !important;
+    width: 20px;
+    height: 20px;
+}
+
 .close-event{
     background-color: #ff0000 !important;
     font-size: 0.9rem !important;

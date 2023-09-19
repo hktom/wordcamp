@@ -13,7 +13,7 @@ function MainLayout({ children }: IProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetch_events({ per_page: 100, page: 1 } as any ));
+    dispatch(fetch_events({} as any));
   }, []);
   return (
     <div>

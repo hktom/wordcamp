@@ -11,6 +11,7 @@ export interface IEventState {
   end_date?: string;
   page: number;
   per_page: number;
+  isLoading: boolean;
 }
 
 export const initialState: IEventState = {
@@ -18,6 +19,7 @@ export const initialState: IEventState = {
   events: [],
   page: 1,
   per_page: 100,
+  isLoading: false,
 };
 
 export const eventReducer = createSlice({
@@ -28,6 +30,7 @@ export const eventReducer = createSlice({
       state.loading = true;
       state.page = action.payload.page || 1;
       state.per_page = action.payload.per_page || 100;
+      state.isLoading = true;
     },
     fetch_events_by_date: (state, action: any) => {
       state.loading = true;
@@ -35,20 +38,24 @@ export const eventReducer = createSlice({
       state.end_date = action.payload.end_date;
       state.page = action.payload.page || 1;
       state.per_page = action.payload.per_page || 100;
+      state.isLoading = true;
     },
     fetch_events_by_status: (state, action: any) => {
       state.loading = true;
       state.status = action.payload.status;
       state.page = action.payload.page || 1;
       state.per_page = action.payload.per_page || 100;
+      state.isLoading = true;
     },
     fetch_events_success: (state, action) => {
       state.loading = false;
       state.events = action.payload;
+      state.isLoading = false;
     },
     fetch_events_error: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+      state.isLoading = false;
     },
   },
 });

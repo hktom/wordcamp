@@ -1,4 +1,5 @@
 export enum status {
+  default = "default",
   open = "wcpt-scheduled",
   closed = "wcpt-closed",
 }

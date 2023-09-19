@@ -12,13 +12,9 @@ export const handleQueryParams = (
     query += `status=${status}`;
   }
 
-  if (per_page) {
-    query += `&per_page=${per_page}`;
-  }
-
-  if (page) {
-    query += `&page=${page}`;
-  }
+  query += `&per_page=${per_page || 100}`;
+  
+  query += `&page=${page || 1}`;
 
   return query;
 };
