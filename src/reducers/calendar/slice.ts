@@ -28,10 +28,19 @@ export const calendarReducer = createSlice({
     set_calendar: (state, action: any) => {
       state.calendar = action.payload;
     },
+    go_to_date: (state, action: any) => {
+      const calendarAPI = state.calendar.current as any;
+      calendarAPI
+        ?.getApi()
+        .gotoDate(dayjs(action.payload).format("YYYY-MM-DD"));
+      state.title = calendarAPI.calendar?.currentData?.viewTitle;
+      state.small_current_date = dayjs(action.payload).format("YYYY-MM-DD");
+    },
     go_to_today: (state, action) => {
       const calendarAPI = state.calendar.current as any;
       calendarAPI?.getApi().today();
       state.title = calendarAPI.calendar?.currentData?.viewTitle;
+      state.small_current_date = dayjs().format("YYYY-MM-DD");
     },
     go_to_next: (state, action) => {
       const calendarAPI = state.calendar.current as any;
@@ -68,6 +77,7 @@ export const {
   change_small_current_date,
   go_to_next,
   go_to_prev,
+  go_to_date,
 } = calendarReducer.actions;
 
 export default calendarReducer.reducer;

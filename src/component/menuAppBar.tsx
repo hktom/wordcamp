@@ -21,11 +21,15 @@ import {
 import { calendarView, status } from "../helpers/enum";
 import { optionCalendarData, optionStatusData } from "../helpers/constant";
 import { fetch_events, fetch_events_by_status } from "../reducers/events/slice";
+import { useNavigate } from "react-router-dom";
+import { change_page } from "../reducers/router/slice";
 
 export default function MenuAppBar() {
+  const navigate = useNavigate();
   const state = useAppSelector((state) => state.calendar);
   const event = useAppSelector((state) => state.event);
   const dispatch = useAppDispatch();
+  const router = useAppSelector((state) => state.router);
   const [optionStatus, setOptionStatus] = React.useState(status.default);
   const [optionCalendarView, setOptionCalendarView] = React.useState(
     calendarView.month,
@@ -92,21 +96,23 @@ export default function MenuAppBar() {
               >
                 {event.isLoading && <CircularProgress sx={{ color: "#fff" }} />}
 
-                <Box>
-                  <BasicSelect
-                    value={optionStatus}
-                    onChange={(e) => {
-                      setOptionStatus(e);
-                      if (e == "default") {
-                        dispatch(fetch_events({} as any));
-                        return;
-                      }
-                      dispatch(fetch_events_by_status({ status: e } as any));
-                    }}
-                    defaultValue={status.default}
-                    options={optionStatusData}
-                  />
-                </Box>
+                {router.page === "home" && (
+                  <Box>
+                    <BasicSelect
+                      value={optionStatus}
+                      onChange={(e) => {
+                        setOptionStatus(e);
+                        if (e == "default") {
+                          dispatch(fetch_events({} as any));
+                          return;
+                        }
+                        dispatch(fetch_events_by_status({ status: e } as any));
+                      }}
+                      defaultValue={status.default}
+                      options={optionStatusData}
+                    />
+                  </Box>
+                )}
                 {/* <Box>
                   <BasicSelect
                     value={optionCalendarView}
@@ -122,10 +128,16 @@ export default function MenuAppBar() {
                     options={optionCalendarData}
                   />
                 </Box> */}
-                <IconButton color="inherit">
+                <IconButton
+                  color="inherit"
+                  onClick={() => dispatch(change_page("home"))}
+                >
                   <CalendarMonthIcon />
                 </IconButton>
-                <IconButton color="inherit">
+                <IconButton
+                  color="inherit"
+                  onClick={() => dispatch(change_page("map"))}
+                >
                   <PublicIcon />
                 </IconButton>
               </Box>

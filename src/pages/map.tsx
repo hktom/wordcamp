@@ -1,7 +1,14 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from "@mui/material";
+import MainLayout from "../layout/mainLayout";
+import SmallCalendar from "../component/smallCalendar";
+import LargeCalendar from "../component/largeCalendar";
 
 function MapPage() {
-    return <Box></Box>;
+  return (
+    <MainLayout>
+      <Box></Box>
+    </MainLayout>
+  );
 }
 
 export default MapPage;
