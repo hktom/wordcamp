@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 // import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import { Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { set_calendar } from "../reducers/calendar/slice";
 import { IWordCamp } from "../helpers/apiInterface";
@@ -9,21 +9,15 @@ import { status } from "../helpers/enum";
 
 function LargeCalendar() {
   const event = useAppSelector((state) => state.event);
-  const [calendarRef, setCalendarRef] = React.useState<any>(null);
   const calendar = useAppSelector((state) => state.calendar);
-
-  // let calendarRef = React.createRef();
   const dispatch = useAppDispatch();
+  const calendarRef = useRef(null);
 
   useEffect(() => {
-    setCalendarRef(React.createRef());
-  }, []);
-
-  useEffect(() => {
-    if (calendarRef) {
+    if (calendarRef.current) {
       dispatch(set_calendar(calendarRef! as any));
     }
-  }, [calendarRef]);
+  }, []);
 
   return (
     <Box sx={{ p: 1 }}>

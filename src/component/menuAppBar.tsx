@@ -22,14 +22,12 @@ import { calendarView, status } from "../helpers/enum";
 import { optionCalendarData, optionStatusData } from "../helpers/constant";
 import { fetch_events, fetch_events_by_status } from "../reducers/events/slice";
 import { useNavigate } from "react-router-dom";
-import { change_page } from "../reducers/router/slice";
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
   const state = useAppSelector((state) => state.calendar);
   const event = useAppSelector((state) => state.event);
   const dispatch = useAppDispatch();
-  const router = useAppSelector((state) => state.router);
   const [optionStatus, setOptionStatus] = React.useState(status.default);
   const [optionCalendarView, setOptionCalendarView] = React.useState(
     calendarView.month,
@@ -96,7 +94,7 @@ export default function MenuAppBar() {
               >
                 {event.isLoading && <CircularProgress sx={{ color: "#fff" }} />}
 
-                {router.page === "home" && (
+                {window.location.pathname === "/" && (
                   <Box>
                     <BasicSelect
                       value={optionStatus}
@@ -130,13 +128,13 @@ export default function MenuAppBar() {
                 </Box> */}
                 <IconButton
                   color="inherit"
-                  onClick={() => dispatch(change_page("home"))}
+                  onClick={() => (window.location.href = "/")}
                 >
                   <CalendarMonthIcon />
                 </IconButton>
                 <IconButton
                   color="inherit"
-                  onClick={() => dispatch(change_page("map"))}
+                  onClick={() => (window.location.href = "/map")}
                 >
                   <PublicIcon />
                 </IconButton>
