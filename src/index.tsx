@@ -9,6 +9,9 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import theme from "./config/theme";
 import { ThemeProvider } from "@emotion/react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "../public/css/index.scss";
 
 const router = createBrowserRouter([
   {
@@ -22,14 +25,14 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
-      <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode>
-      {/* </LocalizationProvider> */}
-    </ThemeProvider>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <RouterProvider router={router} />
+        </LocalizationProvider>
+      </ThemeProvider>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById("root"),
 );

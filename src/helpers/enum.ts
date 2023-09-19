@@ -7,5 +7,5 @@ export enum calendarView {
   year = "dayGridYear",
   month = "dayGridMonth",
   week = "timeGridWeek",
-  day = "timeGridDay",
+  day = "dayGridWeek",
 }
