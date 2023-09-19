@@ -13,6 +13,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import {
+  change_view,
   go_to_next,
   go_to_prev,
   go_to_today,
@@ -106,14 +107,21 @@ export default function MenuAppBar() {
                     options={optionStatusData}
                   />
                 </Box>
-                <Box>
+                {/* <Box>
                   <BasicSelect
                     value={optionCalendarView}
-                    onChange={(e) => setOptionCalendarView(e)}
+                    onChange={(e) => {
+                      setOptionCalendarView(e);
+                      const payload = optionCalendarData.find(
+                        (i) => i.value === e,
+                      );
+                      
+                      dispatch(change_view(payload as any));
+                    }}
                     defaultValue={calendarView.month}
                     options={optionCalendarData}
                   />
-                </Box>
+                </Box> */}
                 <IconButton color="inherit">
                   <CalendarMonthIcon />
                 </IconButton>

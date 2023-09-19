@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { calendarView, status } from "../../helpers/enum";
 import dayjs from "dayjs";
+import dayGridPlugin from "@fullcalendar/daygrid";
 
 export interface ICalendarState {
   view: calendarView;
+  plugins: any[];
   title: string;
   current_date: string;
   small_current_date: string;
@@ -12,6 +14,7 @@ export interface ICalendarState {
 
 export const initialState: ICalendarState = {
   view: calendarView.month,
+  plugins: [dayGridPlugin],
   title: dayjs().format("MMMM YYYY"),
   current_date: dayjs().format("YYYY-MM-DD"),
   small_current_date: dayjs().format("YYYY-MM-DD"),
@@ -41,7 +44,8 @@ export const calendarReducer = createSlice({
       state.title = calendarAPI.calendar?.currentData?.viewTitle;
     },
     change_view: (state, action: any) => {
-      state.view = action.payload;
+      state.view = action.payload.value;
+      state.plugins = action.payload.plugins;
     },
     change_current_date: (state, action: any) => {
       state.current_date = action.payload;

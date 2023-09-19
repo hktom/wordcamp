@@ -9,6 +9,7 @@ export interface IBasicSelectOption {
   id: string;
   value: string;
   label: string;
+  plugin?: any[];
 }
 
 interface IProps {

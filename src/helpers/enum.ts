@@ -9,4 +9,5 @@ export enum calendarView {
   month = "dayGridMonth",
   week = "timeGridWeek",
   day = "dayGridWeek",
+  multi_month = "multiMonthYear",
 }
