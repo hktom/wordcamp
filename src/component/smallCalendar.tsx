@@ -5,9 +5,11 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { Box } from "@mui/material";
+import { useAppSelector } from "../store/store";
 
 export default function SmallCalendar() {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-17"));
+  const state = useAppSelector((state) => state.calendar);
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs(state.small_current_date));
 
   return (
     <Box sx={{ backgroundColor: "#fff" }}>

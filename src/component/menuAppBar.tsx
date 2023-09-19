@@ -17,6 +17,8 @@ import BasicSelect from "./basicSelect";
 import { Button } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { go_to_next, go_to_prev } from "../reducers/calendar/slice";
 
 export default function MenuAppBar() {
   // const [auth, setAuth] = React.useState(true);
@@ -35,6 +37,8 @@ export default function MenuAppBar() {
   // };
 
   const [calendarView, setCalendarView] = React.useState("month");
+  const state = useAppSelector((state) => state.calendar);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
@@ -71,14 +75,17 @@ export default function MenuAppBar() {
                   Today
                 </Button>
 
-                <IconButton color="inherit">
+                <IconButton
+                  color="inherit"
+                  onClick={() => dispatch(go_to_prev())}
+                >
                   <ChevronLeftIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ px: 2 }}>
-                  2021/10
+                  {state.title}
                 </Typography>
                 <IconButton color="inherit">
-                  <ChevronRightIcon />
+                  <ChevronRightIcon onClick={() => dispatch(go_to_next())} />
                 </IconButton>
               </Box>
               <Box

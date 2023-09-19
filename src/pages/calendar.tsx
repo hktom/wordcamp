@@ -17,13 +17,13 @@ function CalendarPage() {
           sx={{
             width: "20%",
             height: "100vh",
-            backgroundColor: "lightgray",
+            backgroundColor: "#fff",
             p: 0.1,
           }}
         >
           <SmallCalendar />
         </Box>
-        <Box sx={{ width: "80%", height: "100vh", backgroundColor: "white" }}>
+        <Box sx={{ width: "80%", height: "100vh", backgroundColor: "#fff" }}>
           <LargeCalendar />
         </Box>
       </Box>
