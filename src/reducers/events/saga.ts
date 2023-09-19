@@ -13,7 +13,7 @@ export function* fetchEventSaga(action: any): SagaIterator {
     yield put(fetch_events_error(res.error));
     return;
   }
-  yield put(fetch_events_success(res.data.events));
+  yield put(fetch_events_success(res.data));
 }
 export function* fetchEventSagaByStatus(action: any): SagaIterator {
   const res = yield call(fetchEventRequestByStatus, action.payload);
@@ -21,7 +21,7 @@ export function* fetchEventSagaByStatus(action: any): SagaIterator {
     yield put(fetch_events_error(res.error));
     return;
   }
-  yield put(fetch_events_success(res.data.events));
+  yield put(fetch_events_success(res.data));
 }
 export function* fetchEventSagaByDate(action: any): SagaIterator {
   const res = yield call(fetchEventRequestByDate, action.payload);
@@ -29,11 +29,11 @@ export function* fetchEventSagaByDate(action: any): SagaIterator {
     yield put(fetch_events_error(res.error));
     return;
   }
-  yield put(fetch_events_success(res.data.events));
+  yield put(fetch_events_success(res.data));
 }
 
 export function* eventSagas(): Generator {
-  yield takeEvery("event/fetch_event", fetchEventSaga);
-  yield takeEvery("event/fetch_event_by_status", fetchEventSagaByStatus);
-  yield takeEvery("event/fetch_event_by_date", fetchEventSagaByDate);
+  yield takeEvery("event/fetch_events", fetchEventSaga);
+  yield takeEvery("event/fetch_events_by_status", fetchEventSagaByStatus);
+  yield takeEvery("event/fetch_events_by_date", fetchEventSagaByDate);
 }

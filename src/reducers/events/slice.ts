@@ -45,14 +45,10 @@ export const eventReducer = createSlice({
     fetch_events_success: (state, action) => {
       state.loading = false;
       state.events = action.payload;
-      state.page = action.payload.page || 1;
-      state.per_page = action.payload.per_page || 100;
     },
     fetch_events_error: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-      state.page = action.payload.page || 1;
-      state.per_page = action.payload.per_page || 100;
     },
   },
 });

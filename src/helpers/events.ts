@@ -32,8 +32,10 @@ export const formatApiData = (res: any[]): IWordCamp[] => {
       link: event.link,
       title: event.title.rendered,
       content: event.content.rendered,
-      startDate: dayjs(event["Start Date (YYYY-mm-dd)"]).format("YYYY-MM-DD"),
-      endDate: dayjs(event["End Date (YYYY-mm-dd)"]).format("YYYY-MM-DD"),
+      start: dayjs(event["Start Date (YYYY-mm-dd)"] * 1000).format(
+        "YYYY-MM-DD",
+      ),
+      end: dayjs(event["End Date (YYYY-mm-dd)"] * 1000).format("YYYY-MM-DD"),
       timezone: event["Event Timezone"],
       location: event.Location,
       url: event.URL,
@@ -58,8 +60,8 @@ export const filterEventByData = (
   const start = dayjs(start_date);
   const end = dayjs(end_date);
   return data.filter((event: IWordCamp) => {
-    const eventStartDate = dayjs(event.startDate);
-    const eventEndDate = dayjs(event.endDate);
+    const eventStartDate = dayjs(event.start);
+    const eventEndDate = dayjs(event.end);
     return (
       (eventStartDate.isAfter(start) || eventStartDate.isSame(start)) &&
       (eventEndDate.isBefore(end) || eventEndDate.isSame(end))

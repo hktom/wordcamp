@@ -7,8 +7,8 @@ export interface IWordCamp {
   link: string;
   title: string;
   content: string;
-  startDate: string;
-  endDate: string;
+  start: string;
+  end: string;
   timezone: string;
   location: string;
   url: string;
