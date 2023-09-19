@@ -3,6 +3,20 @@ body{
     margin: 0px !important;
 }
 
+*{
+    font-family: Inter,arial !important;
+}
+
 .fc-header-toolbar.fc-toolbar{
     display: none !important;
+}
+
+.close-event{
+    background-color: #ff0000 !important;
+    font-size: 0.9rem !important;
+}
+
+.open-event{
+    background-color: #3788D8 !important;
+    font-size: 0.9rem !important;
 }

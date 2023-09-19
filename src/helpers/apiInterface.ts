@@ -2,7 +2,7 @@ import { status } from "./enum";
 
 export interface IWordCamp {
   id: number;
-  status: string;
+  status: status;
   type: string;
   link: string;
   title: string;
