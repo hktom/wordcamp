@@ -4,13 +4,13 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
+// import AccountCircle from "@mui/icons-material/AccountCircle";
+// import Switch from "@mui/material/Switch";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormGroup from "@mui/material/FormGroup";
+// import MenuItem from "@mui/material/MenuItem";
+// import Menu from "@mui/material/Menu";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PublicIcon from "@mui/icons-material/Public";
 import BasicSelect from "./basicSelect";
@@ -18,7 +18,7 @@ import { Button } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { go_to_next, go_to_prev } from "../reducers/calendar/slice";
+import { go_to_next, go_to_prev, go_to_today } from "../reducers/calendar/slice";
 
 export default function MenuAppBar() {
   // const [auth, setAuth] = React.useState(true);
@@ -35,7 +35,6 @@ export default function MenuAppBar() {
   // const handleClose = () => {
   //   setAnchorEl(null);
   // };
-
   const [calendarView, setCalendarView] = React.useState("month");
   const state = useAppSelector((state) => state.calendar);
   const dispatch = useAppDispatch();
@@ -71,21 +70,25 @@ export default function MenuAppBar() {
                   color="inherit"
                   size="small"
                   sx={{ color: "primary.main", px: 3, mr: 4 }}
+                  onClick={() => dispatch(go_to_today(state))}
                 >
                   Today
                 </Button>
 
                 <IconButton
                   color="inherit"
-                  onClick={() => dispatch(go_to_prev())}
+                  onClick={() => dispatch(go_to_prev(state))}
                 >
                   <ChevronLeftIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ px: 2 }}>
                   {state.title}
                 </Typography>
-                <IconButton color="inherit">
-                  <ChevronRightIcon onClick={() => dispatch(go_to_next())} />
+                <IconButton
+                  color="inherit"
+                  onClick={() => dispatch(go_to_next(state))}
+                >
+                  <ChevronRightIcon />
                 </IconButton>
               </Box>
               <Box

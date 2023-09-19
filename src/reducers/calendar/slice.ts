@@ -25,18 +25,20 @@ export const calendarReducer = createSlice({
     set_calendar: (state, action: any) => {
       state.calendar = action.payload;
     },
-
-    go_to_today: (state) => {
+    go_to_today: (state, action) => {
       const calendarAPI = state.calendar.current as any;
       calendarAPI?.getApi().today();
+      state.title = calendarAPI.calendar?.currentData?.viewTitle;
     },
-    go_to_next: (state) => {
+    go_to_next: (state, action) => {
       const calendarAPI = state.calendar.current as any;
       calendarAPI?.getApi().next();
+      state.title = calendarAPI.calendar?.currentData?.viewTitle;
     },
-    go_to_prev: (state) => {
+    go_to_prev: (state, action) => {
       const calendarAPI = state.calendar.current as any;
       calendarAPI?.getApi().prev();
+      state.title = calendarAPI.calendar?.currentData?.viewTitle;
     },
     change_view: (state, action: any) => {
       state.view = action.payload;
@@ -48,28 +50,13 @@ export const calendarReducer = createSlice({
       state.small_current_date = action.payload;
     },
     change_title: (state, action: any) => {
-      switch (state.view) {
-        case calendarView.year:
-          state.title = dayjs().format("YYYY");
-          break;
-        case calendarView.month:
-          state.title = dayjs().format("MMMM YYYY");
-          break;
-        case calendarView.week:
-          state.title = dayjs(action.date).format("MMMM YYYY");
-          break;
-        case calendarView.day:
-          state.title = dayjs(action.date).format("MMMM, DD YYYY");
-          break;
-        default:
-          state.title = dayjs().format("MMMM YYYY");
-          break;
-      }
+      state.title = action.payload;
     },
   },
 });
 
 export const {
+  go_to_today,
   change_view,
   change_current_date,
   change_title,
@@ -77,7 +64,6 @@ export const {
   change_small_current_date,
   go_to_next,
   go_to_prev,
-  go_to_today,
 } = calendarReducer.actions;
 
 export default calendarReducer.reducer;
