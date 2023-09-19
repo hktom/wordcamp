@@ -1,3 +1,5 @@
+import { status } from "./enum";
+
 export interface IWordCamp {
   id: number;
   status: string;
@@ -19,3 +21,17 @@ export interface IWordCamp {
   longitude: number;
   session_start_time: number;
 }
+
+export interface IQueryParams {
+  status?: status;
+  per_page?: number;
+  page?: number;
+}
+
+export interface IQueryDate {
+  start_date: string;
+  end_date: string;
+}
+
+
+export type IQueryParamsDate = IQueryParams & IQueryDate;

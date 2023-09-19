@@ -14,12 +14,16 @@ test("query params", () => {
 });
 
 test("fetch default events", async () => {
-  const { error, data } = await fetchEventRequest(1, 1);
+  const { error, data } = await fetchEventRequest({ page: 1, per_page: 1 });
   expect(data).toBeDefined();
 });
 
 test("fetch events by status", async () => {
-  const { error, data } = await fetchEventRequestByStatus(status.open, 1, 1);
+  const { error, data } = await fetchEventRequestByStatus({
+    status: status.open,
+    page: 1,
+    per_page: 1,
+  });
   let checkStatus = data?.some((event) => event.status !== status.open);
   expect(checkStatus).toBeFalsy();
 });
@@ -28,13 +32,12 @@ test("fetch events by date range", async () => {
   const start = dayjs("1696032000").format("YYYY-MM-DD");
   const end = dayjs("1696032000").format("YYYY-MM-DD");
 
-  const { error, data } = await fetchEventRequestByDate(
-    start,
-    end,
-    undefined,
-    1,
-    1,
-  );
+  const { error, data } = await fetchEventRequestByDate({
+    start_date: start,
+    end_date: end,
+    page: 1,
+    per_page: 1,
+  });
   let checkDate = data?.some(
     (event) =>
       dayjs(event.startDate).isBefore(start) ||
