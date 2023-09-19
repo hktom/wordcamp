@@ -1,6 +1,6 @@
 import { status } from "../src/helpers/enum";
 import { handleQueryParams } from "../src/helpers/events";
-import { fetchEventRequest } from "../src/reducers/events/api";
+import { fetchEventRequest, fetchEventRequestByStatus } from "../src/reducers/events/api";
 
 test("query params", () => {
   const params: string = handleQueryParams(status.open, 1, 1);
@@ -10,4 +10,10 @@ test("query params", () => {
 test("fetch default events", async () => {
   const { error, data } = await fetchEventRequest(1, 1);
   expect(data).toBeDefined();
+});
+
+test("fetch events by status", async () => {
+  const { error, data } = await fetchEventRequestByStatus(status.open, 1, 1);
+  let checkStatus = data?.some((event) => event.status !== status.open);
+  expect(checkStatus).toBeFalsy();
 });
