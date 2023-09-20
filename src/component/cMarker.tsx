@@ -15,12 +15,13 @@ function CMarker(props: IWordCamp) {
           anchor="bottom"
           onClose={() => setShowPopup(false)}
         >
-          <Typography variant="h6">{props.title}</Typography>
-          <Typography variant="body1">
-            {props.start} - {props.end}
+          <Typography variant="h6" sx={{ fontSize: "0.9rem" }}>
+            {props.title}
           </Typography>
-          <Typography variant="body1">{props.venueName}</Typography>
-          <Typography variant="body1">{props.location}</Typography>
+          <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
+            {props.start} - {props.end} <br /> {props.venueName} <br />{" "}
+            {props.location}{" "}
+          </Typography>
         </Popup>
       )}
       <Marker
