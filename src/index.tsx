@@ -12,6 +12,7 @@ import { ThemeProvider } from "@emotion/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "../public/css/index.scss";
+import "leaflet/dist/leaflet.css"; 
 
 const router = createBrowserRouter([
   {
