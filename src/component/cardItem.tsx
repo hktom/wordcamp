@@ -16,6 +16,9 @@ function CardItem(props: IWordCamp) {
             color: "#bf640c",
           },
         }}
+        onClick={() => {
+          window.open(props.link, "_blank");
+        }}
       >
         <CardMedia
           sx={{

@@ -56,38 +56,22 @@ export default function MenuAppBar() {
               >
                 {event.isLoading && <CircularProgress sx={{ color: "#fff" }} />}
 
-                {window.location.pathname === "/" && (
-                  <Box>
-                    <BasicSelect
-                      value={optionStatus}
-                      onChange={(e) => {
-                        setOptionStatus(e);
-                        if (e == "default") {
-                          dispatch(fetch_events({} as any));
-                          return;
-                        }
-                        dispatch(fetch_events_by_status({ status: e } as any));
-                      }}
-                      defaultValue={status.default}
-                      options={optionStatusData}
-                    />
-                  </Box>
-                )}
-                {/* <Box>
+                <Box>
                   <BasicSelect
-                    value={optionCalendarView}
+                    value={optionStatus}
                     onChange={(e) => {
-                      setOptionCalendarView(e);
-                      const payload = optionCalendarData.find(
-                        (i) => i.value === e,
-                      );
-                      
-                      dispatch(change_view(payload as any));
+                      setOptionStatus(e);
+                      if (e == "default") {
+                        dispatch(fetch_events({} as any));
+                        return;
+                      }
+                      dispatch(fetch_events_by_status({ status: e } as any));
                     }}
-                    defaultValue={calendarView.month}
-                    options={optionCalendarData}
+                    defaultValue={status.default}
+                    options={optionStatusData}
                   />
-                </Box> */}
+                </Box>
+
                 <IconButton
                   color="inherit"
                   onClick={() => (window.location.href = "/")}

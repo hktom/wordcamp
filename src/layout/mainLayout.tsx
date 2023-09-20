@@ -14,7 +14,7 @@ function MainLayout({ children }: IProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch(fetch_events({} as any));
+    dispatch(fetch_events({} as any));
   }, []);
   return (
     <div>

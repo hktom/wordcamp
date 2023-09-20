@@ -39,48 +39,48 @@ function MapPage() {
   return (
     <MainLayout>
       <Box>
-        <Box sx={{ maxWidth: "80rem", mx: "auto", mt: 0 }}>
-          <MapContainer
-            center={[34.846, 14.862]}
-            zoom={2.5}
-            minZoom={2.5}
-            scrollWheelZoom={true}
-            style={{ minHeight: "600px", width: "100%" }}
+        <MapContainer
+          center={[34.846, 14.862]}
+          zoom={2.5}
+          minZoom={2.5}
+          scrollWheelZoom={true}
+          style={{ minHeight: "600px", width: "100%" }}
+        >
+          <TileLayer
+            attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+            url="https://api.mapbox.com/styles/v1/tomhk/ck3gtxgeg0g3w1cpapci744gz/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidG9taGsiLCJhIjoiY2szZ3R2eG1rMDU2azNobXR5dXUzODRieiJ9.3AcxoJrp5yJtZTxPdqmDzw"
+          />
+
+          <MarkerClusterGroup
+            chunkedLoading
+            showCoverageOnHover={false}
+            iconCreateFunction={createClusterCustomIcon}
           >
-            <TileLayer
-              attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-              url="https://api.mapbox.com/styles/v1/tomhk/ck3gtxgeg0g3w1cpapci744gz/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidG9taGsiLCJhIjoiY2szZ3R2eG1rMDU2azNobXR5dXUzODRieiJ9.3AcxoJrp5yJtZTxPdqmDzw"
-            />
+            {state.events
+              .filter((event) => event.latitude && event.longitude)
+              .map((event) => (
+                <Marker
+                  position={[event.latitude, event.longitude]}
+                  icon={pinIcon}
+                  key={event.id}
+                >
+                  <Popup>
+                    <Typography variant="h6">{event.title}</Typography>
+                    <Typography variant="body2">
+                      {event.start} - {event.end} <br /> {event.location} <br />{" "}
+                      {event.physicalAddress}
+                    </Typography>
+                  </Popup>
+                </Marker>
+              ))}
+          </MarkerClusterGroup>
+        </MapContainer>
 
-            <MarkerClusterGroup
-              chunkedLoading
-              showCoverageOnHover={false}
-              iconCreateFunction={createClusterCustomIcon}
-            >
-              {state.events
-                .filter((event) => event.latitude && event.longitude)
-                .map((event) => (
-                  <Marker
-                    position={[event.latitude, event.longitude]}
-                    icon={pinIcon}
-                    key={event.id}
-                  >
-                    <Popup>
-                      <Typography variant="h6">{event.title}</Typography>
-                      <Typography variant="body2">
-                        {event.start} - {event.end} <br /> {event.location}{" "}
-                        <br /> {event.physicalAddress}
-                      </Typography>
-                    </Popup>
-                  </Marker>
-                ))}
-            </MarkerClusterGroup>
-          </MapContainer>
-
+        <Box sx={{ maxWidth: "80rem", mx: "auto", mt: 0 }}>
           <Box sx={{ mt: 5 }}>
             {state.eventsGroupeByDate.map((group) => (
               <Box key={group.year}>
-                <Typography variant="h4" sx={{ color: "#028db9" }}>
+                <Typography variant="h4" sx={{ color: "#028db9", mt: 5 }}>
                   {group.year}
                 </Typography>
                 <Divider sx={{ mb: 3 }} />
