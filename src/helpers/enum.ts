@@ -11,3 +11,8 @@ export enum calendarView {
   day = "dayGridWeek",
   multi_month = "multiMonthYear",
 }
+
+export enum GeneralView {
+  calendar = "calendar",
+  map = "map",
+}

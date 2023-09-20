@@ -1,5 +1,4 @@
 import FullCalendar from "@fullcalendar/react";
-// import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -11,13 +10,13 @@ function LargeCalendar() {
   const event = useAppSelector((state) => state.event);
   const calendar = useAppSelector((state) => state.calendar);
   const dispatch = useAppDispatch();
-  const calendarRef = useRef(null);
+  const calendarRef = useRef<any>(null);
 
   useEffect(() => {
-    if (calendarRef.current) {
-      dispatch(set_calendar(calendarRef! as any));
+    if (calendarRef?.current) {
+      dispatch(set_calendar(calendarRef as any));
     }
-  }, []);
+  }, [calendarRef]);
 
   return (
     <Box sx={{ p: 1 }}>
@@ -25,6 +24,10 @@ function LargeCalendar() {
         ref={calendarRef}
         plugins={calendar.plugins}
         initialView={calendar.view}
+        eventClick={(e) => {
+          e.jsEvent.preventDefault();
+          window.open(e.event.url, "_blank");
+        }}
         events={event.events?.map((e: IWordCamp) => {
           return {
             title: e.title,

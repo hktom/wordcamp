@@ -11,12 +11,13 @@ function CalendarPage() {
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "flex-start",
+          minHeight: "100vh",
         }}
       >
         <Box
           sx={{
             width: "20%",
-            height: "100vh",
+            height: "100%",
             backgroundColor: "#fff",
             p: 0.1,
           }}
@@ -48,7 +49,7 @@ function CalendarPage() {
             <Typography variant="body2">Past Events</Typography>
           </Box>
         </Box>
-        <Box sx={{ width: "80%", height: "100vh", backgroundColor: "#fff" }}>
+        <Box sx={{ width: "80%", height: "100%", backgroundColor: "#fff" }}>
           <LargeCalendar />
         </Box>
       </Box>

@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IWordCamp } from "../../helpers/apiInterface";
-import { status } from "../../helpers/enum";
-import { IOrderAndGroupEventsByDateYear, orderAndGroupEventsByDateYear } from "../../helpers/events";
+import { GeneralView, status } from "../../helpers/enum";
+import {
+  IOrderAndGroupEventsByDateYear,
+  orderAndGroupEventsByDateYear,
+} from "../../helpers/events";
 
 export interface IEventState {
   loading: boolean;
@@ -14,6 +17,7 @@ export interface IEventState {
   page: number;
   per_page: number;
   isLoading: boolean;
+  view: GeneralView;
 }
 
 export const initialState: IEventState = {
@@ -23,12 +27,16 @@ export const initialState: IEventState = {
   per_page: 100,
   isLoading: false,
   eventsGroupeByDate: [],
+  view: GeneralView.calendar,
 };
 
 export const eventReducer = createSlice({
   name: "event",
   initialState,
   reducers: {
+    change_general_view: (state, action: any) => {
+      state.view = action.payload;
+    },
     fetch_events: (state, action: any) => {
       state.loading = true;
       state.page = action.payload.page || 1;
@@ -70,6 +78,7 @@ export const {
   fetch_events_by_status,
   fetch_events_success,
   fetch_events_error,
+  change_general_view,
 } = eventReducer.actions;
 
 export default eventReducer.reducer;

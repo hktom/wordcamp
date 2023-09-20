@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1695210391880" clover="3.2.0">
-  <project timestamp="1695210391880" name="All files">
-    <metrics statements="57" coveredstatements="54" conditionals="18" coveredconditionals="16" methods="13" coveredmethods="13" elements="88" coveredelements="83" complexity="0" loc="57" ncloc="57" packages="2" files="4" classes="4"/>
+<coverage generated="1695229423262" clover="3.2.0">
+  <project timestamp="1695229423262" name="All files">
+    <metrics statements="56" coveredstatements="53" conditionals="18" coveredconditionals="16" methods="13" coveredmethods="13" elements="87" coveredelements="82" complexity="0" loc="56" ncloc="56" packages="2" files="4" classes="4"/>
     <package name="helpers">
-      <metrics statements="39" coveredstatements="39" conditionals="18" coveredconditionals="16" methods="10" coveredmethods="10"/>
+      <metrics statements="38" coveredstatements="38" conditionals="18" coveredconditionals="16" methods="10" coveredmethods="10"/>
       <file name="apiKeys.ts" path="/Users/macbookpro/dev/wordcamp/src/helpers/apiKeys.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -13,7 +13,7 @@
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
       <file name="events.ts" path="/Users/macbookpro/dev/wordcamp/src/helpers/events.ts">
-        <metrics statements="37" coveredstatements="37" conditionals="18" coveredconditionals="16" methods="10" coveredmethods="10"/>
+        <metrics statements="36" coveredstatements="36" conditionals="18" coveredconditionals="16" methods="10" coveredmethods="10"/>
         <line num="5" count="1" type="stmt"/>
         <line num="10" count="6" type="stmt"/>
         <line num="11" count="6" type="cond" truecount="2" falsecount="0"/>
@@ -45,12 +45,11 @@
         <line num="97" count="5" type="stmt"/>
         <line num="100" count="1" type="stmt"/>
         <line num="101" count="4" type="stmt"/>
-        <line num="102" count="4" type="stmt"/>
-        <line num="103" count="5" type="stmt"/>
-        <line num="104" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="105" count="2" type="stmt"/>
-        <line num="107" count="2" type="stmt"/>
-        <line num="118" count="1" type="stmt"/>
+        <line num="102" count="5" type="stmt"/>
+        <line num="103" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="104" count="2" type="stmt"/>
+        <line num="106" count="2" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
       </file>
     </package>
     <package name="reducers.events">

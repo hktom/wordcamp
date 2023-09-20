@@ -8,6 +8,7 @@ import clustor from "../../public/img/icon-marker-clustered.png";
 import L from "leaflet";
 import CardItem from "../component/cardItem";
 import { IWordCamp } from "../helpers/apiInterface";
+import dayjs from "dayjs";
 
 const clustorPin = new L.Icon({
   iconUrl: clustor,
@@ -65,10 +66,22 @@ function MapPage() {
                   key={event.id}
                 >
                   <Popup>
-                    <Typography variant="h6">{event.title}</Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        cursor: "pointer",
+                        "&:hover": { color: "#bf640c" },
+                      }}
+                      onClick={() => {
+                        window.open(event.link, "_blank");
+                      }}
+                    >
+                      {event.title}
+                    </Typography>
                     <Typography variant="body2">
-                      {event.start} - {event.end} <br /> {event.location} <br />{" "}
-                      {event.physicalAddress}
+                      {dayjs(event.start).format("DD MMMM YYYY")} -{" "}
+                      {dayjs(event.end).format("DD MMMM YYYY")} <br />{" "}
+                      {event.location}
                     </Typography>
                   </Popup>
                 </Marker>
