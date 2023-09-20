@@ -1,6 +1,9 @@
 import { Box, CardMedia, Typography, Divider } from "@mui/material";
+import { IWordCamp } from "../helpers/apiInterface";
+import { status } from "../helpers/enum";
+import dayjs from "dayjs";
 
-function CardItem() {
+function CardItem(props: IWordCamp) {
   return (
     <Box sx={{ mt: 1 }}>
       <Box
@@ -24,7 +27,7 @@ function CardItem() {
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           }}
           component="img"
-          src="https://central.wordcamp.org/files/2023/04/Banner-Post-Central-WCSJ-2023-130x60.jpg"
+          src={props.image}
         />
 
         <Box sx={{ flexGrow: 1 }}>
@@ -36,13 +39,14 @@ function CardItem() {
             }}
           >
             <Typography variant="h6" sx={{ color: "#028db9" }}>
-              Event Title
+              {props.title}
             </Typography>
 
             <Box
               sx={{
                 mx: 1,
-                backgroundColor: "red",
+                backgroundColor:
+                  props.status == status.closed ? "red" : "green",
                 fontSize: "0.6rem",
                 color: "#fff",
                 px: 0.3,
@@ -50,13 +54,12 @@ function CardItem() {
                 fontWeight: "bold",
               }}
             >
-              CLOSED
+              {props.status == status.closed ? "PASTED" : "UPCOMING"}
             </Box>
           </Box>
           <Typography variant="body2" sx={{ my: 0.2 }}>
-            30 september 2023 |   VancouVer, Canada
+            {dayjs(props.start).format("DD MM YYYY")} | {props.location}
           </Typography>
-          {/* <Typography variant="body2">30 september 2023</Typography> */}
         </Box>
       </Box>
       <Divider sx={{ mt: 1 }} />

@@ -82,20 +82,33 @@ export const filterEventByData = (
 };
 
 export interface IOrderAndGroupEventsByDateYear {
-  [key: string]: IWordCamp[];
+  year: string;
+  data: IWordCamp[];
 }
 
 export const orderAndGroupEventsByDateYear = (
   data: IWordCamp[],
-): IOrderAndGroupEventsByDateYear => {
-  let events: any = {};
+): IOrderAndGroupEventsByDateYear[] => {
+  let events: any = [];
 
-  data.forEach((event: IWordCamp) => {
+  let orderData = data.sort((a: IWordCamp, b: IWordCamp) => {
+    let start = dayjs(a.start).format("YYYY");
+    let end = dayjs(b.start).format("YYYY");
+    return parseInt(end) - parseInt(start);
+  });
+
+  orderData.forEach((event: IWordCamp) => {
+    console.log(event.start);
     const year = dayjs(event.start).format("YYYY");
-    if (!events[year]) {
-      events[year] = [];
+    const index = events.findIndex((item: any) => item.year === year);
+    if (index !== -1) {
+      events[index].data.push(event);
+    } else {
+      events.push({
+        year,
+        data: [event],
+      });
     }
-    events[year].push(event);
   });
 
   return events;

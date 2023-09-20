@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { status } from "../src/helpers/enum";
-import { filterEventByData, handleQueryParams } from "../src/helpers/events";
+import { filterEventByData, getEventImage, handleQueryParams, orderAndGroupEventsByDateYear } from "../src/helpers/events";
 import {
   fetchEventRequest,
   fetchEventRequestByDate,
@@ -10,7 +10,7 @@ import { IWordCamp } from "../src/helpers/apiInterface";
 
 test("query params", () => {
   const params: string = handleQueryParams(status.open, 1, 1);
-  expect(params).toBe("status=wcpt-scheduled&per_page=1&page=1");
+  expect(params).toBe("status=wcpt-scheduled&per_page=1&page=1&_embed");
 });
 
 test("fetch default events", async () => {
@@ -40,8 +40,7 @@ test("fetch events by date range", async () => {
   });
   let checkDate = data?.some(
     (event) =>
-      dayjs(event.startDate).isBefore(start) ||
-      dayjs(event.endDate).isAfter(end),
+      dayjs(event.start).isBefore(start) || dayjs(event.end).isAfter(end),
   );
 
   expect(checkDate).toBeFalsy();
@@ -56,8 +55,8 @@ test("test filterEventByData", () => {
       link: "https://2021.asia.wordcamp.org/",
       title: "WordCamp Asia 2021",
       content: "WordCamp Asia 2021",
-      startDate: "2021-02-27",
-      endDate: "2021-02-28",
+      start: "2021-02-27",
+      end: "2021-02-28",
       timezone: "UTC+8",
       location: "Online",
       url: "https://2021.asia.wordcamp.org/",
@@ -69,6 +68,7 @@ test("test filterEventByData", () => {
       latitude: 0,
       longitude: 0,
       session_start_time: 0,
+      image: ""
     },
     {
       id: 2,
@@ -77,8 +77,8 @@ test("test filterEventByData", () => {
       link: "https://2021.asia.wordcamp.org/",
       title: "WordCamp Asia 2021",
       content: "WordCamp Asia 2021",
-      startDate: "2021-03-02",
-      endDate: "2021-03-05",
+      start: "2021-03-02",
+      end: "2021-03-05",
       timezone: "UTC+8",
       location: "Online",
       url: "https://2021.asia.wordcamp.org/",
@@ -90,6 +90,7 @@ test("test filterEventByData", () => {
       latitude: 0,
       longitude: 0,
       session_start_time: 0,
+      image: ""
     },
     {
       id: 3,
@@ -98,8 +99,8 @@ test("test filterEventByData", () => {
       link: "https://2021.asia.wordcamp.org/",
       title: "WordCamp Asia 2021",
       content: "WordCamp Asia 2021",
-      startDate: "2021-02-01",
-      endDate: "2021-03-02",
+      start: "2021-02-01",
+      end: "2021-03-02",
       timezone: "UTC+8",
       location: "Online",
       url: "https://2021.asia.wordcamp.org/",
@@ -111,6 +112,7 @@ test("test filterEventByData", () => {
       latitude: 0,
       longitude: 0,
       session_start_time: 0,
+      image: ""
     },
   ];
 
@@ -120,3 +122,15 @@ test("test filterEventByData", () => {
   const result = filterEventByData(start, end, data);
   expect(result[0]?.id).toBe(2);
 });
+
+test("test getImage Event", async ()=>{
+  const { error, data } = await fetchEventRequest({ page: 1, per_page: 1 });
+  let image = getEventImage(data![0]);
+  expect(image).toBeDefined();
+})
+
+test("orderAndGroupEventsByDateYear", async()=>{
+  const { error, data } = await fetchEventRequest({ page: 1, per_page: 4 });
+  let groupedData = orderAndGroupEventsByDateYear(data!);
+  expect(groupedData).toBeDefined();
+})

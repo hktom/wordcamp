@@ -20,6 +20,7 @@ export interface IWordCamp {
   latitude: number;
   longitude: number;
   session_start_time: number;
+  image: string;
 }
 
 export interface IQueryParams {

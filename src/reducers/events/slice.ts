@@ -6,7 +6,7 @@ import { IOrderAndGroupEventsByDateYear, orderAndGroupEventsByDateYear } from ".
 export interface IEventState {
   loading: boolean;
   events: IWordCamp[];
-  eventsGroupeByDate?: IOrderAndGroupEventsByDateYear;
+  eventsGroupeByDate: IOrderAndGroupEventsByDateYear[];
   error?: string;
   status?: status;
   start_date?: string;
@@ -22,6 +22,7 @@ export const initialState: IEventState = {
   page: 1,
   per_page: 100,
   isLoading: false,
+  eventsGroupeByDate: [],
 };
 
 export const eventReducer = createSlice({

@@ -7,6 +7,7 @@ import pin from "../../public/img/icon-marker-upcoming-2x.png";
 import clustor from "../../public/img/icon-marker-clustered.png";
 import L from "leaflet";
 import CardItem from "../component/cardItem";
+import { IWordCamp } from "../helpers/apiInterface";
 
 const clustorPin = new L.Icon({
   iconUrl: clustor,
@@ -77,14 +78,17 @@ function MapPage() {
           </MapContainer>
 
           <Box sx={{ mt: 5 }}>
-            <Typography variant="h4" sx={{ color: "#028db9" }}>
-              2023
-            </Typography>
-            <Divider sx={{ mb: 3 }} />
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
+            {state.eventsGroupeByDate.map((group) => (
+              <Box key={group.year}>
+                <Typography variant="h4" sx={{ color: "#028db9" }}>
+                  {group.year}
+                </Typography>
+                <Divider sx={{ mb: 3 }} />
+                {group.data.map((event: IWordCamp) => (
+                  <CardItem {...event} key={event.id} />
+                ))}
+              </Box>
+            ))}
           </Box>
         </Box>
       </Box>
