@@ -24,6 +24,10 @@ function LargeCalendar() {
         ref={calendarRef}
         plugins={calendar.plugins}
         initialView={calendar.view}
+        eventClick={(e) => {
+          e.jsEvent.preventDefault();
+          window.open(e.event.url, "_blank");
+        }}
         events={event.events?.map((e: IWordCamp) => {
           return {
             title: e.title,
