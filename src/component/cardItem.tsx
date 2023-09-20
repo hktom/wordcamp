@@ -61,7 +61,7 @@ function CardItem(props: IWordCamp) {
             </Box>
           </Box>
           <Typography variant="body2" sx={{ my: 0.2 }}>
-            {dayjs(props.start).format("DD MM YYYY")} | {props.location}
+            {dayjs(props.start).format("DD MMMM YYYY")} | {props.location}
           </Typography>
         </Box>
       </Box>
