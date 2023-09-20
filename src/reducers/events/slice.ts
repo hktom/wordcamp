@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IWordCamp } from "../../helpers/apiInterface";
 import { status } from "../../helpers/enum";
+import { IOrderAndGroupEventsByDateYear, orderAndGroupEventsByDateYear } from "../../helpers/events";
 
 export interface IEventState {
   loading: boolean;
   events: IWordCamp[];
+  eventsGroupeByDate?: IOrderAndGroupEventsByDateYear;
   error?: string;
   status?: status;
   start_date?: string;
@@ -49,8 +51,9 @@ export const eventReducer = createSlice({
     },
     fetch_events_success: (state, action) => {
       state.loading = false;
-      state.events = action.payload;
       state.isLoading = false;
+      state.events = action.payload;
+      state.eventsGroupeByDate = orderAndGroupEventsByDateYear(action.payload);
     },
     fetch_events_error: (state, action) => {
       state.loading = false;
