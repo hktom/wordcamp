@@ -26,7 +26,7 @@ export const calendarReducer = createSlice({
   initialState,
   reducers: {
     set_calendar: (state, action: any) => {
-      state.calendar = action.payload;
+      state.calendar = {... action.payload};
     },
     go_to_date: (state, action: any) => {
       const calendarAPI = state.calendar.current as any;

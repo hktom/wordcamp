@@ -98,7 +98,6 @@ export const orderAndGroupEventsByDateYear = (
   });
 
   orderData.forEach((event: IWordCamp) => {
-    console.log(event.start);
     const year = dayjs(event.start).format("YYYY");
     const index = events.findIndex((item: any) => item.year === year);
     if (index !== -1) {

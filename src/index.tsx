@@ -1,10 +1,6 @@
 /* eslint-disable react/no-deprecated */
 import React from "react";
 import ReactDOM from "react-dom";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CalendarPage from "./pages/calendar";
-import MapPage from "./pages/map";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import theme from "./config/theme";
@@ -12,25 +8,15 @@ import { ThemeProvider } from "@emotion/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "../public/css/index.scss";
-import "leaflet/dist/leaflet.css"; 
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <CalendarPage />,
-  },
-  {
-    path: "/map",
-    element: <MapPage />,
-  },
-]);
+import "leaflet/dist/leaflet.css";
+import HomePage from "./pages";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <RouterProvider router={router} />
+          <HomePage />
         </LocalizationProvider>
       </ThemeProvider>
     </Provider>

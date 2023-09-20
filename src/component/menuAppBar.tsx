@@ -11,14 +11,16 @@ import BasicSelect from "./basicSelect";
 import { CircularProgress } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/store";
 
-import { calendarView, status } from "../helpers/enum";
+import { GeneralView, calendarView, status } from "../helpers/enum";
 import { optionStatusData } from "../helpers/constant";
-import { fetch_events, fetch_events_by_status } from "../reducers/events/slice";
-import { useNavigate } from "react-router-dom";
+import {
+  change_general_view,
+  fetch_events,
+  fetch_events_by_status,
+} from "../reducers/events/slice";
 import CalendarNavigation from "./calendarNavigation";
 
 export default function MenuAppBar() {
-  const navigate = useNavigate();
   const state = useAppSelector((state) => state.calendar);
   const event = useAppSelector((state) => state.event);
   const dispatch = useAppDispatch();
@@ -45,7 +47,7 @@ export default function MenuAppBar() {
                 flexGrow: 1,
               }}
             >
-              {window.location.pathname === "/" && <CalendarNavigation />}
+              {event.view === GeneralView.calendar && <CalendarNavigation />}
               <Box
                 sx={{
                   display: "flex",
@@ -74,13 +76,17 @@ export default function MenuAppBar() {
 
                 <IconButton
                   color="inherit"
-                  onClick={() => (window.location.href = "/")}
+                  onClick={() => {
+                    dispatch(change_general_view(GeneralView.calendar as any));
+                  }}
                 >
                   <CalendarMonthIcon />
                 </IconButton>
                 <IconButton
                   color="inherit"
-                  onClick={() => (window.location.href = "/map")}
+                  onClick={() => {
+                    dispatch(change_general_view(GeneralView.map as any));
+                  }}
                 >
                   <PublicIcon />
                 </IconButton>
